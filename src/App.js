@@ -35,7 +35,7 @@ function LoginForm({ login, register }) {
   }
 
   return (
-    <div className="app">
+    <div className="app login-page">
       <div className="heading"><h1>Book tracker and recommender</h1></div>
       <div className="book">
         <h2>Log in or create an account</h2>
@@ -107,7 +107,6 @@ function BookTracker({ currentUser, logout }) {
     <div className="app">
       <div className="heading">
         <h1>Book tracker and recommender</h1>
-        <button onClick={logout}>Log out</button>
       </div>
 
       <div className="toplayout">
@@ -136,16 +135,19 @@ function BookTracker({ currentUser, logout }) {
             <button onClick={Addbook}> Add book </button>
           </div>
 
-          <div className="genresidebar">
-            <h3>Genre Tally</h3>
-            <p>Romance: <strong>{genretally["romance"] || 0}</strong></p>
-            <p>Action: <strong>{genretally["action"] || 0}</strong></p>
-            <p>Sci-Fi: <strong>{genretally["sci_fi"] || 0}</strong></p>
-            <p>Horror: <strong>{genretally["horror"] || 0}</strong></p>
-            <p>Comedy: <strong>{genretally["comedy"] || 0}</strong></p>
-            <p>Non-Fiction: <strong>{genretally["non_fiction"] || 0}</strong></p>
-            <hr />
-            <p>Total: <strong>{books.length}</strong></p>
+          <div className="genresidebar-wrap">
+            <div className="genresidebar">
+              <h3>Genre Tally</h3>
+              <p>Romance: <strong>{genretally["romance"] || 0}</strong></p>
+              <p>Action: <strong>{genretally["action"] || 0}</strong></p>
+              <p>Sci-Fi: <strong>{genretally["sci_fi"] || 0}</strong></p>
+              <p>Horror: <strong>{genretally["horror"] || 0}</strong></p>
+              <p>Comedy: <strong>{genretally["comedy"] || 0}</strong></p>
+              <p>Non-Fiction: <strong>{genretally["non_fiction"] || 0}</strong></p>
+              <hr />
+              <p>Total: <strong>{books.length}</strong></p>
+            </div>
+            <button className="popupbutton" onClick={logout}>Log out</button>
           </div>
         </div>
       </div>
