@@ -5,15 +5,20 @@ import { BookService } from './BookService';
 
 function App() {
   const { currentUser, login, register, logout } = useAuth();
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'blush');
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   if (!currentUser) {
-    return <LoginForm login={login} register={register} />;
+    return <LoginForm login={login} register={register} theme={theme} setTheme={setTheme} />;
   }
 
-  return <BookTracker currentUser={currentUser} logout={logout} />;
+  return <BookTracker currentUser={currentUser} logout={logout} theme={theme} setTheme={setTheme} />;
 }
 
-function LoginForm({ login, register }) {
+function LoginForm({ login, register, theme, setTheme }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -35,8 +40,11 @@ function LoginForm({ login, register }) {
   }
 
   return (
-    <div className="app login-page">
-      <div className="heading"><h1>Book tracker and recommender</h1></div>
+    <div className={`app login-page theme-${theme}`}>
+      <div className="heading" style={{ position: 'relative' }}>
+        <h1>Book tracker and recommender</h1>
+        <ThemeSwitcher theme={theme} setTheme={setTheme} />
+      </div>
       <div className="book">
         <h2>Log in or create an account</h2>
         <input
@@ -59,7 +67,7 @@ function LoginForm({ login, register }) {
   );
 }
 
-function BookTracker({ currentUser, logout }) {
+function BookTracker({ currentUser, logout, theme, setTheme }) {
   const [books, setbooks] = useState([])
   const [title, settitle] = useState('')
   const [genre, setgenre] = useState('')
@@ -67,6 +75,7 @@ function BookTracker({ currentUser, logout }) {
   const [popup, setpopup] = useState(false)
   const [recgenre, setrec] = useState('')
   const [wantsrec, setwrec] = useState(false)
+
 
   useEffect(() => {
     const unsubscribe = BookService.subscribeToBooks(currentUser.uid, setbooks);
@@ -104,9 +113,10 @@ function BookTracker({ currentUser, logout }) {
   })
 
   return (
-    <div className="app">
-      <div className="heading">
+    <div className={`app theme-${theme}`}>
+      <div className="heading" style={{ position: 'relative' }}>
         <h1>Book tracker and recommender</h1>
+        <ThemeSwitcher theme={theme} setTheme={setTheme} />
       </div>
 
       <div className="toplayout">
@@ -220,6 +230,29 @@ function Recpopup({wantsrec, setwrec, recgenre, setrec, recs, onclose}) {
       </div>
     </div>
   )
+}
+
+function ThemeSwitcher({ theme, setTheme }) {
+  return (
+    <div style={{ position: 'fixed', top: '20px', right: '40px', display: 'flex', gap: '8px' }}>
+      {['blush', 'mono', 'ocean'].map((name) => (
+        <button
+          key={name}
+          onClick={() => setTheme(name)}
+          title={name}
+          style={{
+            width: '24px',
+            height: '24px',
+            borderRadius: '50%',
+            border: theme === name ? '3px solid #333' : '2px solid #ccc',
+            backgroundColor: { blush: '#9b6a5b', mono: '#1a1a1a', ocean: '#3a6ea5' }[name],
+            cursor: 'pointer',
+            padding: 0,
+          }}
+        />
+      ))}
+    </div>
+  );
 }
 
 const recs = {

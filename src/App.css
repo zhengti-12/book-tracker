@@ -1,6 +1,28 @@
+html {
+  overflow-y: scroll;
+}
+
+.app.theme-blush {
+  --primary: #9b6a5b;
+  --border: #a79283;
+  --bg: #f8edeb;
+}
+
+.app.theme-mono {
+  --primary: #1a1a1a;
+  --border: #4d4d4d;
+  --bg: #f5f5f5;
+}
+
+.app.theme-ocean {
+  --primary: #3a6ea5;
+  --border: #7fa3c3;
+  --bg: #e9f1f8;
+}
+
 .heading h1 {
   text-align: center;
-  color: #9b6a5b;
+  color: var(--primary);
   font-family: 'kish';
   margin-top: 45px;
   font-size: 50px;
@@ -8,8 +30,12 @@
 
 }
 
-.App {
+.app {
+  background-color: var(--bg);
+  margin: 0;
+  min-height: 100vh;
   text-align: center;
+  padding-top: 1px;
 }
 
 .App-link {
@@ -17,13 +43,7 @@
 }
 
 body {
-  background-color: #f8edeb;
-  margin: 0;
-  min-height: 100vh
-}
-
-body {
-  background-color: #f8edeb;
+  background-color: var(--bg);
   margin: 0;
   min-height: 100vh
 }
@@ -38,23 +58,27 @@ body {
   margin-top: 40px;
 }
 
+.login-page .heading {
+  align-self: stretch;
+}
+
 .appheader {
   display: flex;
   flex-direction: row;  
   justify-content: center;  
   gap: 40px;
   padding-top: 25px;
-  color: #9b6a5b
+  color: var(--primary)
 }
 
-.genre-sidebar {
+.genresidebar {
   background-color: rgba(255, 255, 255, 0.67);
-  border: 6px solid #a79283;
+  border: 6px solid var(--border);
   border-radius: 6px;
   padding: 20px;
   width: 200px;
   font-family: 'kish';
-  color: #9b6a5b;
+  color: var(--primary);
 }
 
 .genresidebar-wrap {
@@ -66,7 +90,7 @@ body {
 
 .book {
   background-color: rgba(255, 255, 255, 0.67);
-  border: 6px solid #a79283;
+  border: 6px solid var(--border);
   border-radius: 6px;
   width: 400px;
   display: flex;
@@ -80,7 +104,7 @@ body {
   font-family: 'kish';
   text-align: center;
   margin-bottom: 10px;
-  color: #9b6a5b
+  color: var(--primary)
 }
 
 input, select{
@@ -89,16 +113,16 @@ input, select{
   margin: 8px;
   font-size: 18px;
   font-family: 'kish';
-  color: #a79283;
+  color: var(--border);
   width: 100%;
   box-sizing: border-box;
 }
 
 .book button {
-  background-color: #f8edeb;
+  background-color: var(--bg);
   padding: 12px 20px;
-  color: #9b6a5b;
-  border: 4px solid #a79283;
+  color: var(--primary);
+  border: 4px solid var(--border);
   border-radius: 10px;
   font-size: 20px;
   font-family: 'kish';
@@ -112,7 +136,7 @@ input, select{
   width: 100%;
   font-family: 'kish';
   font-size: 45px;
-  color: #9b6a5b;
+  color: var(--primary);
   margin-bottom: 0px;
   margin-top: 25px
 }
@@ -126,9 +150,9 @@ input, select{
 .btable {
   margin-top: 10px;
   background-color: rgba(255, 255, 255, 0.67);
-  border: 6px solid #a79283;
+  border: 6px solid var(--border);
   border-radius: 6px;
-  color:#9b6a5b;
+  color: var(--primary);
   font-family: 'kish';
   border-collapse: collapse;
   width: 85%;
@@ -139,17 +163,17 @@ input, select{
 .btable th {
   padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #a79283;
-  border-right: 1px solid #a79283;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
   font-weight: bold;
-  color: #9b6a5b;
+  color: var(--primary);
 }
 
 .btable td {
   padding: 12px;
   text-align: left;
-  border-right: 1px solid #a79283;
-  border-bottom: 1px solid #a79283;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .popupoverlay {
@@ -176,10 +200,10 @@ input, select{
 }
 
 .popupbutton {
-  background-color: #f8edeb;
+  background-color: var(--bg);
   padding: 8px 20px;
-  color: #9b6a5b;
-  border: 4px solid #a79283;
+  color: var(--primary);
+  border: 4px solid var(--border);
   border-radius: 10px;
   font-size: 20px;
   font-family: 'kish';
