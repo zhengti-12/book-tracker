@@ -205,7 +205,7 @@ function Recpopup({wantsrec, setwrec, recgenre, setrec, recs, onclose}) {
           <>
             <h3>Book logged! Would you like a recommendation?</h3>
             <button className="popupbutton" onClick={() => setwrec(true)}>yes</button>
-            <button className="popupbutton" onClick={onclose}>No</button>
+            <button className="popupbutton" onClick={onclose}>no</button>
           </>
         ) : (
           <>
